@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prova ICO</title>
+
+</head>
+
+<body>
+  <script>
+    fetch("get_data.php")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error al obtenir les dades!");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data)
+      })
+  </script>
+</body>
+
+</html>

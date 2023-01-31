@@ -1,7 +1,8 @@
 
-var map = L.map('map').setView([41.483022995325, 2.2685480117798], 13);
+var map = L.map('map').setView([41.485522995425, 2.2745480117798], 14);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
+  preferCanvas: true,
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
@@ -29,7 +30,16 @@ fetch("get_data.php")
       });
     }
 
-    //de moment mostra de 100 marcadors, no pot carregar 13k.
-    const slicedArray = geojson.features.slice(0, 100);
-    L.geoJSON(slicedArray).addTo(map);
+    var markers = L.markerClusterGroup();
+    markers.addLayer(L.geoJson(geojson, {
+      pointToLayer: function (feature, latlng) {
+        return new L.CircleMarker(latlng, {
+          radius: 7,
+          color: '#0a75ad',
+          fillOpacity: 0.5
+        });
+      },
+    }));
+    map.addLayer(markers);
+
   })

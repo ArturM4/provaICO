@@ -4,17 +4,17 @@
 
 A la base de dades PostgreSQL local fer "Restore" de la taula observacions (podeu trobar el backup a la carpeta sql "./sql/db_backup.sql").
 
-Es crearà la taula amb les columnes necessaries i amb les 10000 observacions.
+Es crearà la taula amb les columnes necessàries i amb les 10000 observacions.
 
 Omplir el fitxer db_settings.ini amb les credencials corresponents a la vostre base de dades.
 
-Úbicar el projecte en el directori del servidor web local (htdocs en xampp o similars...) per poder executar codi php.
+Ubicar el projecte en el directori del servidor web local (htdocs en xampp o similars...) per poder executar codi php.
 
 ## Funcionalitats
 ### Mapa
-Al mapa es poden veure els diferents maracadors en el mapa, al clicar es mostra l'informació de la observació.
+Al mapa es poden veure els diferents marcadors en el mapa, al clicar es mostra la informació de la observació.
 
-Els selectors d'adalt del mapa permeten filtrar entre any i espècie.
+Els selectors de dalt del mapa permeten filtrar entre any i espècie.
 
 ![](/assets/img1.jpg)
 

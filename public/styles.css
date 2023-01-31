@@ -1,7 +1,13 @@
-body {
+#container {
   height: 97vh;
   display: flex;
   flex-direction: column;
+  margin: 8px;
+}
+
+body {
+  background-color: unset !important;
+  color: unset !important;
 }
 
 #map {
@@ -16,4 +22,8 @@ body {
 #selectEspecie {
   padding: 1em;
   width: 200px;
+}
+
+.text_negre {
+  color: black;
 }

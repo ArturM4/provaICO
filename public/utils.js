@@ -27,7 +27,7 @@ function marcadorCircular(feature, latlng) {
 }
 
 function popupObservacio(feature, layer) {
-  var info = "<h3>" + feature.properties.NAME_SPECIES + "</h3>" +
+  var info = "<h5 class=text_negre>" + feature.properties.NAME_SPECIES + "</h5>" +
     feature.properties.LATIN_SPECIES + "<br/>" +
     "Data: " + feature.properties.DATE + "<br/>" +
     "Observador: " + feature.properties.SURNAME + " " + feature.properties.NAME + "<br/>" +
@@ -58,13 +58,13 @@ function carregarSelect(data) {
   document.getElementById('selectAny').innerHTML = htmlAnys
 }
 
-function obtenirURL() {
+function obtenirParametres() {
   var any = document.getElementById('selectAny').value
   var especie = document.getElementById('selectEspecie').value
   if (any == 'tot') any = null
   if (especie == 'tot') especie = null
 
-  var url = "get_data.php"
+  var url = ""
   if (any && especie)
     url += "?any=" + any + "&especie=" + especie
   else if (any)

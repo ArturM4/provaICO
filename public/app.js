@@ -20,14 +20,33 @@ fetch("get_data.php")
     afegirMarcadors(data)
   })
 
+
+fetch("get_count.php")
+  .then((response) => {
+    if (!response.ok)
+      throw new Error("Error al obtenir les dades!");
+    return response.json();
+  })
+  .then((data) => {
+    omplirTaulaResum(data)
+  })
+
 document.getElementById('selectEspecie').addEventListener("change", filtrar);
 document.getElementById('selectAny').addEventListener("change", filtrar);
 
+function omplirTaulaResum(data) {
+  var htmlTaula = "";
+  data.forEach(fila => {
+    htmlTaula += "<tr><td>" + fila.any + "</td><td>" + fila.setmana + "</td><td>" + fila.especie + "</td><td>" + fila.total + "</td></tr>"
+  });
+  document.getElementById('bodyTaulaResum').innerHTML = htmlTaula;
+}
+
 function filtrar(e) {
   marcadors.clearLayers()
-  var url = obtenirURL()
+  var param = obtenirParametres()
 
-  fetch(url)
+  fetch("get_data.php" + param)
     .then((response) => {
       if (!response.ok)
         throw new Error("Error al obtenir les dades!");
@@ -35,6 +54,17 @@ function filtrar(e) {
     })
     .then((data) => {
       afegirMarcadors(data)
+    })
+
+
+  fetch("get_count.php" + param)
+    .then((response) => {
+      if (!response.ok)
+        throw new Error("Error al obtenir les dades!");
+      return response.json();
+    })
+    .then((data) => {
+      omplirTaulaResum(data)
     })
 }
 

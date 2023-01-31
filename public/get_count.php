@@ -13,17 +13,27 @@ if (!$conn) {
   echo "Error al connectar amb la bbdd.\n";
   exit;
 }
+
+
 if (isset($_GET['any'])) {
   $selector_in_year = '"DATE" >= \'' . $_GET['any'] . '-01-01\' and "DATE" <= \'' . $_GET['any'] . '-12-31\'';
 }
-$query = 'SELECT * FROM "observacions" ';
-
+$where = "";
 if (isset($_GET['especie']) && isset($_GET['any']))
-  $query = $query . 'WHERE "ID_SPECIES" = ' . $_GET['especie'] . ' and ' . $selector_in_year;
+  $where = 'WHERE "ID_SPECIES" = ' . $_GET['especie'] . ' and ' . $selector_in_year;
 else if (isset($_GET['any']))
-  $query = $query . 'WHERE ' . $selector_in_year;
+  $where =  'WHERE ' . $selector_in_year;
 else if (isset($_GET['especie']))
-  $query = $query . 'WHERE "ID_SPECIES" = ' . $_GET['especie'];
+  $where = 'WHERE "ID_SPECIES" = ' . $_GET['especie'];
+
+$query = 'SELECT date_part(\'year\', "DATE") as "any",
+  date_part(\'week\', "DATE") AS setmana,
+  "NAME_SPECIES" as especie,
+  SUM("TOTAL_COUNT") as total           
+  FROM public.observacions ' . $where . '
+  GROUP BY "any", setmana, especie
+  ORDER BY "any", setmana, especie;';
+
 
 $result = pg_query($conn, $query);
 

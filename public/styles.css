@@ -1,7 +1,19 @@
-#map {
-  height: 100vh;
+body {
+  height: 97vh;
+  display: flex;
+  flex-direction: column;
 }
 
-body {
-  margin: 0;
+#map {
+  height: 100%;
+}
+
+#controls {
+  margin: 10px 0px;
+}
+
+#selectAny,
+#selectEspecie {
+  padding: 1em;
+  width: 200px;
 }

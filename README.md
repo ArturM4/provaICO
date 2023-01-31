@@ -10,6 +10,8 @@ Omplir el fitxer db_settings.ini amb les credencials corresponents a la vostre b
 
 Ubicar el projecte en el directori del servidor web local (htdocs en xampp o similars...) per poder executar codi php.
 
+Obrir el directori http://localhost/provaICO/public/
+
 ## Funcionalitats
 ### Mapa
 Al mapa es poden veure els diferents marcadors en el mapa, al clicar es mostra la informació de la observació.

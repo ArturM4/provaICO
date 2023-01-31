@@ -1,14 +1,16 @@
 
+//init mapa
 var map = L.map('map').setView([41.485522995425, 2.2745480117798], 14);
 var marcadors;
 
+//layer del mapa
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   preferCanvas: true,
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-//carrega inicial
+//carrega inicial dels marcadors
 fetch("get_data.php")
   .then((response) => {
     if (!response.ok)
@@ -16,11 +18,13 @@ fetch("get_data.php")
     return response.json();
   })
   .then((data) => {
+    //omplir els selectors amb les possibles dades (anys i espècies)
     carregarSelect(data)
+    //afegir els marcadors amb les dades obtingudes
     afegirMarcadors(data)
   })
 
-
+//carrega inicial de la taula resum
 fetch("get_count.php")
   .then((response) => {
     if (!response.ok)
@@ -31,9 +35,11 @@ fetch("get_count.php")
     omplirTaulaResum(data)
   })
 
+
 document.getElementById('selectEspecie').addEventListener("change", filtrar);
 document.getElementById('selectAny').addEventListener("change", filtrar);
 
+//omplir la taula resum
 function omplirTaulaResum(data) {
   var htmlTaula = "";
   data.forEach(fila => {
@@ -42,10 +48,12 @@ function omplirTaulaResum(data) {
   document.getElementById('bodyTaulaResum').innerHTML = htmlTaula;
 }
 
+//al filtrar per un camp es criden les consultes a la base de dades i s'actualitza el mapa i la taula resum
 function filtrar(e) {
   marcadors.clearLayers()
   var param = obtenirParametres()
 
+  //marcadors
   fetch("get_data.php" + param)
     .then((response) => {
       if (!response.ok)
@@ -57,6 +65,7 @@ function filtrar(e) {
     })
 
 
+  //taula resum
   fetch("get_count.php" + param)
     .then((response) => {
       if (!response.ok)

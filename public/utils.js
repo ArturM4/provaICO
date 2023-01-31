@@ -1,3 +1,6 @@
+////Funcions
+
+//convertir un array a un geojson
 function arrayToGeoJSON(data) {
   var geojson = {
     type: "FeatureCollection",
@@ -18,6 +21,7 @@ function arrayToGeoJSON(data) {
   return geojson
 }
 
+//convertir els marcadors a marcadors circulars per millor eficiència 
 function marcadorCircular(feature, latlng) {
   return new L.CircleMarker(latlng, {
     radius: 7,
@@ -26,6 +30,7 @@ function marcadorCircular(feature, latlng) {
   });
 }
 
+//generar html del popup
 function popupObservacio(feature, layer) {
   var info = "<h5 class=text_negre>" + feature.properties.NAME_SPECIES + "</h5>" +
     feature.properties.LATIN_SPECIES + "<br/>" +
@@ -37,6 +42,7 @@ function popupObservacio(feature, layer) {
   layer.bindPopup(info)
 }
 
+//omplir els selectors amb les possibles dades
 function carregarSelect(data) {
   var especies = []
   var htmlEspeies = "<option value=tot>Selecciona una espècie</option>"
@@ -58,6 +64,7 @@ function carregarSelect(data) {
   document.getElementById('selectAny').innerHTML = htmlAnys
 }
 
+//generar la url amb els paràmetres
 function obtenirParametres() {
   var any = document.getElementById('selectAny').value
   var especie = document.getElementById('selectEspecie').value

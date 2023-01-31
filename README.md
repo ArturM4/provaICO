@@ -18,6 +18,8 @@ Els selectors d'adalt del mapa permeten filtrar entre any i espècie.
 
 ![](/assets/img1.jpg)
 
+![](/assets/img3.jpg)
+
 ### Taula resum
 Al consultar la taula resum s'obre un modal amb el nombre total d'individus de cada espècie i agrupats per cada setmana.
 

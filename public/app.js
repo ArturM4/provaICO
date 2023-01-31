@@ -39,7 +39,22 @@ fetch("get_data.php")
           fillOpacity: 0.5
         });
       },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup(popupObservacio(feature))
+      }
     }));
     map.addLayer(markers);
 
   })
+
+function popupObservacio(feature) {
+
+  var info = "<h3>" + feature.properties.NAME_SPECIES + "</h3>" +
+    feature.properties.LATIN_SPECIES + "<br/>" +
+    "Data: " + feature.properties.DATE + "<br/>" +
+    "Observador: " + feature.properties.NAME + " " + feature.properties.SURNAME + "<br/>" +
+    "Localitat: " + feature.properties.PLACE + "<br/>" +
+    "Nombre: " + feature.properties.TOTAL_COUNT
+
+  return info
+}
